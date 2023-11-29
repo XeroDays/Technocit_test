@@ -1,0 +1,37 @@
+﻿.back { 
+    width: 90%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.div-center {
+    width: 400px;
+    height: 400px;
+    background-color: #fff; 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto; 
+    overflow: auto;
+    padding: 1em 2em;
+    display: table;
+}
+
+ 
+div.content {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.form-group {
+   padding:0px !important;
+}
+
+.form-group > span
+{
+    display: inline-block; 
+    text-align: right;
+    color:red
+}

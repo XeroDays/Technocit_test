@@ -1,0 +1,36 @@
+﻿@model Technocitt.Models.MyProperty
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create Property";
+}
+
+
+
+<div class="back">
+
+
+    <div class="div-center">
+
+
+        <div class="content">
+
+            <h3>@ViewData["Title"]</h3>
+            <hr />
+            <form asp-controller="Dashboard" asp-action="create">
+                <div class="form-group">
+                    <label asp-for="Name">Property Name</label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+
+        </div>
+
+
+    </div>
+</div>
+       

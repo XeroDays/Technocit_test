@@ -1,0 +1,91 @@
+﻿@model Technocitt.ViewModels.PropertiesViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
+}
+
+
+
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">@ViewData["Title"]</a>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="btn btn-danger" asp-controller="Account" asp-action="Logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+<h3 style="display:flex;justify-content:center">Hello @User.Identity!.Name</h3>
+<hr />
+
+
+<div style="width:50vh">
+    <h2>
+        Properties
+    </h2>
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th>S/n</th>
+                <th>Name</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Properties.Count; i++)
+            {
+                <tr>
+                    <td>@(i +1)</td>
+                    <td>@Model.Properties[@i].Name</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th style="display:flex;flex-direction:row">
+                            <a class="btn btn-primary" asp-controller="Dashboard" asp-action="edit" asp-route-id="@Model.Properties[@i].ID">Edit</a>
+                            <a class="btn btn-danger" asp-controller="Dashboard" asp-action="delete" asp-route-id="@Model.Properties[@i].ID">Delete</a>
+
+                        </th>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" asp-asp-controller="Dashboard" asp-action="create">Add Property</a>
+}
+else
+{
+    <h4>Only admin can make changes here.</h4>
+} 
